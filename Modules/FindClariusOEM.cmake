@@ -16,7 +16,8 @@
 # into "../clarius_oem_sdk"
 IF(WIN32)
   SET(ClariusOEM_PATH_HINTS
-    "../clarius_oem_sdk/"
+    ../clarius_oem_sdk/
+    ${CMAKE_CURRENT_BINARY_DIR}/../../../../clarius_oem_sdk/
     )
 ELSE()
   MESSAGE(FATAL_ERROR "Clarius OEM SDK is currently only supported on Windows")
@@ -32,8 +33,8 @@ FIND_PATH(ClariusOEM_DIR include/oem/oem.h
 IF(ClariusOEM_DIR)
   
   # set path to Clarius OEM SDK include directory
-  SET(ClariusOEM_INCLUDE_DIR ${ClariusOEM_DIR}/include/oem CACHE PATH "Clarius OEM SDK include directory")
-  MARK_AS_ADVANCED(ClariusOEM_INCLUDE_DIR)
+  SET(ClariusOEM_INCLUDE_DIRS ${ClariusOEM_DIR}/include/oem CACHE PATH "Clarius OEM SDK include directories")
+  MARK_AS_ADVANCED(ClariusOEM_INCLUDE_DIRS)
 
   # find Clarius OEM SDK library file
   FIND_LIBRARY(ClariusOEM_LIBRARY_PATH
@@ -59,7 +60,7 @@ include(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(
   ClariusOEM
   FOUND_VAR ClariusOEM_FOUND
-  REQUIRED_VARS ClariusOEM_INCLUDE_DIR ClariusOEM_LIBRARY_PATH ClariusOEM_BINARY_PATH
+  REQUIRED_VARS ClariusOEM_INCLUDE_DIRS ClariusOEM_LIBRARY_PATH ClariusOEM_BINARY_PATH
 )
 
 
@@ -67,7 +68,7 @@ FIND_PACKAGE_HANDLE_STANDARD_ARGS(
 IF(ClariusOEM_FOUND)
   ADD_LIBRARY(ClariusOEM SHARED IMPORTED)
   SET_TARGET_PROPERTIES(ClariusOEM PROPERTIES
-    INTERFACE_INCLUDE_DIRECTORIES ${ClariusOEM_INCLUDE_DIR}
+    INTERFACE_INCLUDE_DIRECTORIES ${ClariusOEM_INCLUDE_DIRS}
     IMPORTED_IMPLIB ${ClariusOEM_LIBRARY_PATH}
     IMPORTED_LOCATION ${ClariusOEM_BINARY_PATH}
     )
