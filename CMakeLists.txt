@@ -634,7 +634,7 @@ ENDIF()
 
 IF(PLUS_USE_PICOSCOPE)
   FIND_PACKAGE(PicoScopeSDK)
-  IF(NOT PICOSCOPE_SDK_FOUND)
+  IF(NOT PicoScopeSDK_FOUND)
     MESSAGE(FATAL_ERROR "This project requires the PicoScope SDK for supporting PicoScope oscilloscopes.")
   ENDIF()
 ENDIF()

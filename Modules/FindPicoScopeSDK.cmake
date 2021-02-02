@@ -5,11 +5,11 @@
 #
 # Variables defined by this module:
 #
-#  PICOSCOPE_SDK_FOUND               True if OptiTrack Motive API was found
-#  PICOSCOPE_SDK_VERSION            The version of Motive API
-#  PICOSCOPE_SDK_INCLUDE_DIR         The location(s) of Motive API headers
-#  PICOSCOPE_SDK_LIBRARY_DIR         Libraries needed to use Motive API
-#  PICOSCOPE_SDK_BINARY_DIR          Binaries needed to use Motive API
+#  PicoScopeSDK_FOUND               True if PicoScope SDK found
+#  PicoScopeSDK_VERSION             The version of PicoScope SDK
+#  PicoScopeSDK_INCLUDE_DIR         The location(s) of PicoScope SDK headers
+#  PicoScopeSDK_LIBRARY_DIR         Libraries needed to use PicoScope SDK
+#  PicoScopeSDK_BINARY_DIR          Binaries needed to use PicoScope SDK
 
 IF(WIN32 AND CMAKE_SIZEOF_VOID_P EQUAL 4)
   # Windows 32 bit path hints
@@ -44,26 +44,26 @@ find_path(PICO_SDK_DIR "/inc/ps2000.h"
 
 IF (PICO_SDK_DIR)
   # Include directories
-  set(PICOSCOPE_SDK_INCLUDE_DIR ${PICO_SDK_DIR}/inc)
-  mark_as_advanced(PICOSCOPE_SDK_INCLUDE_DIR)
+  set(PicoScopeSDK_INCLUDE_DIR ${PICO_SDK_DIR}/inc)
+  mark_as_advanced(PicoScopeSDK_INCLUDE_DIR)
 
   # Libraries
-  set(PICOSCOPE_SDK_LIBRARY_DIR ${PICO_SDK_DIR}/lib)
-  mark_as_advanced(PICOSCOPE_SDK_LIBRARY_DIR)
+  set(PicoScopeSDK_LIBRARY_DIR ${PICO_SDK_DIR}/lib)
+  mark_as_advanced(PicoScopeSDK_LIBRARY_DIR)
 
   # Binary directory
-  set(PICOSCOPE_SDK_BINARY_DIR ${PICO_SDK_DIR}/lib)
-  mark_as_advanced(PICOSCOPE_SDK_BINARY_DIR)
+  set(PicoScopeSDK_BINARY_DIR ${PICO_SDK_DIR}/lib)
+  mark_as_advanced(PicoScopeSDK_BINARY_DIR)
 
   #Version
   #TODO: properly set SDK version using REGEX
-  set(PICOSCOPE_SDK_VERSION "2.3.0.6")
+  set(PicoScopeSDK_VERSION "2.3.0.6")
 
 ENDIF ()
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(PICOSCOPE_SDK
-  FOUND_VAR PICOSCOPE_SDK_FOUND
-  REQUIRED_VARS PICOSCOPE_SDK_INCLUDE_DIR PICOSCOPE_SDK_LIBRARY_DIR PICOSCOPE_SDK_BINARY_DIR
-  VERSION_VAR PICOSCOPE_SDK_VERSION
+find_package_handle_standard_args(PicoScopeSDK
+  FOUND_VAR PicoScopeSDK_FOUND
+  REQUIRED_VARS PicoScopeSDK_INCLUDE_DIR PicoScopeSDK_LIBRARY_DIR PicoScopeSDK_BINARY_DIR
+  VERSION_VAR PicoScopeSDK_VERSION
 )
